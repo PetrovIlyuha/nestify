@@ -1,14 +1,7 @@
+import { Product } from "../types/product.interface";
+
 interface ComponentProps {
-  product: {
-    id: number;
-    brand: string;
-    type: string;
-    description: string;
-    name: string;
-    pictureUrl: string;
-    price: number;
-    quantityInStock: number;
-  };
+  product: Product;
 }
 
 const ProductFrontCard: React.FC<ComponentProps> = ({ product }) => {
