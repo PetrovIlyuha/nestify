@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestifyAPI", "NestifyAPI\NestifyAPI.csproj", "{B4609BDF-DD77-4010-85DF-6310B97E725A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4609BDF-DD77-4010-85DF-6310B97E725A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4609BDF-DD77-4010-85DF-6310B97E725A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4609BDF-DD77-4010-85DF-6310B97E725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4609BDF-DD77-4010-85DF-6310B97E725A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67D23274-063B-4CB3-A418-2135DA49169C}
+	EndGlobalSection
+EndGlobal
