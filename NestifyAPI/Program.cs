@@ -13,6 +13,13 @@ builder.Services.AddDbContext<StoreContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresLocal"));
 });
+builder.Services.AddCors(opts =>
+{
+    opts.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+    });
+});
 
 var app = builder.Build();
 
@@ -28,6 +35,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
