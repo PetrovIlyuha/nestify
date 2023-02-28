@@ -9,7 +9,10 @@ interface HeroImageSliderProps {
   interval: number;
 }
 
-const HeroImageSlider = ({ images, interval = 5000 }: HeroImageSliderProps) => {
+const ImamgeSliderHorizontal = ({
+  images,
+  interval = 5000,
+}: HeroImageSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transition, setTransition] = useState(false);
 
@@ -79,4 +82,4 @@ const HeroImageSlider = ({ images, interval = 5000 }: HeroImageSliderProps) => {
   );
 };
 
-export default HeroImageSlider;
+export default ImamgeSliderHorizontal;
