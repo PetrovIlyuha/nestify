@@ -15,6 +15,7 @@ import axios from "../api/axios";
 import ProductFrontCard from "./cards/ProductFrontCard";
 import { Product } from "./types/product.interface";
 import { ProductCategory } from "./types/product-category.interface";
+import HeroImageSlider from "./sliders/HeroImageSlider";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
@@ -138,6 +139,10 @@ export default function StoreFront() {
   const [productCategories, setProductCategories] = useState<ProductCategory[]>(
     []
   );
+  const [heroImages, setHeroImages] = useState<string[]>([]);
+  // const [currentHeroImage, setCurrentHeroImage] = useState<string>("");
+  // const [showedHeroImageIndex, setShowedHeroImageIndex] = useState<number>(0);
+  // const [slideTransition, setSlideTransition] = useState<boolean>(false);
 
   useEffect(() => {
     axios.get("/api/products").then(({ data }) => {
@@ -158,10 +163,32 @@ export default function StoreFront() {
         []
       );
       setProductCategories(categories);
+      const heroImages = data.map((p: Product) => p.pictureUrl);
+      setHeroImages(heroImages);
     });
   }, []);
 
-  console.log({ productCategories });
+  // useEffect(() => {
+  //   let imageInterval: string | number | NodeJS.Timer | null | undefined = null;
+  //   if (heroImages.length) {
+  //     setCurrentHeroImage(heroImages[showedHeroImageIndex]);
+  //     imageInterval = setInterval(() => {
+  //       if (showedHeroImageIndex < heroImages.length - 1) {
+  //         setShowedHeroImageIndex((prev) => prev + 1);
+  //         console.log("Should change ++ index", showedHeroImageIndex);
+  //       } else {
+  //         setShowedHeroImageIndex(0);
+  //       }
+  //       setCurrentHeroImage(heroImages[showedHeroImageIndex]);
+  //       console.log(currentHeroImage);
+  //     }, 2000);
+  //   }
+  //   return () => {
+  //     if (imageInterval) {
+  //       clearInterval(imageInterval);
+  //     }
+  //   };
+  // }, [heroImages, showedHeroImageIndex]);
 
   return (
     <div className="bg-white">
@@ -336,11 +363,14 @@ export default function StoreFront() {
       <div className="relative bg-gray-900">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/home-page-01-hero-full-width.jpg"
+          {heroImages.length && (
+            <HeroImageSlider images={heroImages} interval={7000} />
+          )}
+          {/* <img
+            src={currentHeroImage}
             alt=""
             className="h-full w-full object-cover object-center"
-          />
+          /> */}
         </div>
         <div
           aria-hidden="true"
@@ -668,11 +698,9 @@ export default function StoreFront() {
         >
           <div className="relative overflow-hidden rounded-lg">
             <div className="absolute inset-0">
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-01.jpg"
-                alt=""
-                className="h-full w-full object-cover object-center"
-              />
+              {heroImages.length && (
+                <HeroImageSlider images={heroImages} interval={3000} />
+              )}
             </div>
             <div className="relative bg-gray-900 bg-opacity-75 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
               <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -680,14 +708,13 @@ export default function StoreFront() {
                   id="social-impact-heading"
                   className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 >
-                  <span className="block sm:inline">Level up</span>
-                  <span className="block sm:inline">your desk</span>
+                  <span className="block sm:inline mr-2">Level up</span>
+                  <span className="block sm:inline">your lifestyle</span>
                 </h2>
                 <p className="mt-3 text-xl text-white">
-                  Make your desk beautiful and organized. Post a picture to
-                  social media and watch it get more likes than life-changing
-                  announcements. Reflect on the shallow nature of existence. At
-                  least you have a really nice desk setup.
+                  Make your living space beautiful and organized. Post a picture
+                  to social media and watch it get more likes than life-changing
+                  announcements.
                 </p>
                 <a
                   href="#"
