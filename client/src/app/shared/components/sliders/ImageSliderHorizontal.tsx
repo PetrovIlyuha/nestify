@@ -9,7 +9,7 @@ interface HeroImageSliderProps {
   interval: number;
 }
 
-const ImamgeSliderHorizontal = ({
+const ImageSliderHorizontal = ({
   images,
   interval = 5000,
 }: HeroImageSliderProps) => {
@@ -54,7 +54,7 @@ const ImamgeSliderHorizontal = ({
     <div className="h-full w-full relative overflow-hidden">
       <ArrowLeftCircleIcon
         onClick={() => updateIndex("left")}
-        className="w-12 h-12 absolute top-[50%] left-[2%] text-gray-300 z-20 rounded-full hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
+        className="w-12 h-12 absolute top-[50%] left-[2%] z-10 text-gray-300 rounded-full hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
       />
       <div
         style={{
@@ -63,6 +63,7 @@ const ImamgeSliderHorizontal = ({
           transform: `translateX(-${(100 / images.length) * currentIndex}%)`,
           transition: transition ? "transform 1s ease-in-out" : "",
         }}
+        className="h-full"
       >
         {images.map((image: string) => (
           <img
@@ -76,10 +77,10 @@ const ImamgeSliderHorizontal = ({
       </div>
       <ArrowRightCircleIcon
         onClick={() => updateIndex("right")}
-        className="w-12 h-12 absolute top-[50%] right-[2%] text-gray-300 z-20 rounded-full hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
+        className="w-12 h-12 absolute top-[50%] right-[2%] text-gray-300 z-10 rounded-full hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
       />
     </div>
   );
 };
 
-export default ImamgeSliderHorizontal;
+export default ImageSliderHorizontal;

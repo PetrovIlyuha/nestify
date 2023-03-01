@@ -9,6 +9,8 @@ import React, { useState, Fragment, FC } from "react";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ProductCategory } from "../models/product-category.interface";
 
+import MainLogo from "../../images/logo.jpg";
+
 interface MainLayoutProps {
   children: React.ReactNode;
   productCategories?: ProductCategory[];
@@ -125,20 +127,20 @@ const MainLayout: FC<MainLayoutProps> = ({ children, productCategories }) => {
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <NavLink
+                      to="/register"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create an account
-                    </a>
+                    </NavLink>
                   </div>
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <NavLink
+                      to="/sign-in"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </Dialog.Panel>
@@ -152,23 +154,23 @@ const MainLayout: FC<MainLayoutProps> = ({ children, productCategories }) => {
           <div className="bg-gray-800">
             <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               <div className="flex items-center">
-                🐤
-                <h2 className="text-white">Nestify</h2>
+                <img className="w-8 h-8 rounded-md" src={MainLogo} alt="" />
+                <h2 className="text-white ml-2">Nestify</h2>
               </div>
 
               <div className="flex items-center space-x-6">
-                <a
-                  href="#"
+                <NavLink
+                  to="/sing-in"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Sign in
-                </a>
-                <a
-                  href="#"
+                </NavLink>
+                <NavLink
+                  to="/register"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Create an account
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -180,14 +182,14 @@ const MainLayout: FC<MainLayoutProps> = ({ children, productCategories }) => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                    {/* <a href="#">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-12 w-12 rounded-md"
-                src={Logo}
-                alt=""
-              />
-            </a> */}
+                    <NavLink to="/">
+                      <span className="sr-only">Your Company</span>
+                      <img
+                        className="h-12 w-12 rounded-md"
+                        src={MainLogo}
+                        alt=""
+                      />
+                    </NavLink>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -226,39 +228,42 @@ const MainLayout: FC<MainLayoutProps> = ({ children, productCategories }) => {
                                       aria-hidden="true"
                                     />
 
-                                    <div className="relative bg-white">
+                                    <div className="relative bg-white z-30 h-[420px]">
                                       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                         <div className="grid grid-cols-4 gap-y-10 gap-x-8 py-16">
-                                          {category.products.map((item) => (
-                                            <div
-                                              key={item.name}
-                                              className="group relative"
-                                            >
-                                              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                                <img
-                                                  src={item.pictureUrl}
-                                                  alt={item.pictureUrl}
-                                                  className="object-cover object-center"
-                                                />
-                                              </div>
-                                              <NavLink
-                                                to={`/product-details/${item.id}`}
-                                                className="mt-4 block font-medium text-gray-900"
+                                          {category.products
+                                            .sort((a, b) => b.price - a.price)
+                                            .slice(0, 3)
+                                            .map((item) => (
+                                              <div
+                                                key={item.name}
+                                                className="group relative"
                                               >
-                                                <span
-                                                  className="absolute inset-0 z-10"
+                                                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
+                                                  <img
+                                                    src={item.pictureUrl}
+                                                    alt={item.pictureUrl}
+                                                    className="object-cover object-center"
+                                                  />
+                                                </div>
+                                                <NavLink
+                                                  to={`/product-details/${item.id}`}
+                                                  className="mt-4 block font-medium text-gray-900"
+                                                >
+                                                  <span
+                                                    className="absolute inset-0 z-10"
+                                                    aria-hidden="true"
+                                                  />
+                                                  {item.name}
+                                                </NavLink>
+                                                <p
                                                   aria-hidden="true"
-                                                />
-                                                {item.name}
-                                              </NavLink>
-                                              <p
-                                                aria-hidden="true"
-                                                className="mt-1"
-                                              >
-                                                Shop now
-                                              </p>
-                                            </div>
-                                          ))}
+                                                  className="mt-1"
+                                                >
+                                                  Shop now
+                                                </p>
+                                              </div>
+                                            ))}
                                         </div>
                                       </div>
                                     </div>
@@ -294,14 +299,14 @@ const MainLayout: FC<MainLayoutProps> = ({ children, productCategories }) => {
                   </div>
 
                   {/* Logo (lg-) */}
-                  {/* <a href="#" className="lg:hidden">
-            <span className="sr-only">Your Company</span>
-            <img
-              src={Logo}
-              alt=""
-              className="h-12 w-auto rounded-md"
-            />
-          </a> */}
+                  <NavLink to="/" className="lg:hidden">
+                    <span className="sr-only">Your Company</span>
+                    <img
+                      src={MainLogo}
+                      alt=""
+                      className="h-12 w-auto rounded-md"
+                    />
+                  </NavLink>
 
                   <div className="flex flex-1 items-center justify-end">
                     <a

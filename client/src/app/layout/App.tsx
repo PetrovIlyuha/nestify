@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CategoryPage from "../../features/categories/CategoryPage";
 import StoreFront from "../../features/storefront/components/StoreFront";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<StoreFront />} />
         <Route path="/basket" element={<div>Basket Page</div>} />
+        <Route path="/categories" element={<CategoryPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Product } from "../../../../app/models/product.interface";
 
 interface ComponentProps {
@@ -6,9 +7,9 @@ interface ComponentProps {
 
 const ProductFrontCard: React.FC<ComponentProps> = ({ product }) => {
   return (
-    <a
+    <Link
       key={product.name}
-      href={product.id.toString()}
+      to={`/product-details/${product.id}`}
       className="group block my-3 relative"
     >
       <div
@@ -29,7 +30,7 @@ const ProductFrontCard: React.FC<ComponentProps> = ({ product }) => {
           {product.description}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 
